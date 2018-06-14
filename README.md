@@ -5,9 +5,18 @@ Busca Información de Afiliado en el Sistema Privado de Pensiones (Perú)
     require ("curl.php");
     require ("spp.php");
 
-    $search = new SPP();
+    $afiliado = new SPP();
     $dni="00000000";
     header('Content-type: application/json');
-    echo json_encode( $search->BuscaDatosSPP($dni), JSON_PRETTY_PRINT );
+    $response = $afiliado->search($dni);
+    
+    if( $response->success = true )
+    {
+		var_dump( $response->result );
+    }
+    else
+    {
+		echo "No afiliado";
+    }
 ?>
 ```
